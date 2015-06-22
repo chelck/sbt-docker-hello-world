@@ -16,18 +16,13 @@ dockerfile in docker := {
   val artifact = (outputPath in assembly).value
 
   new Dockerfile {
-    from("ubuntu:14.04")
-
-    stageFile(file("jdk-8u45-linux-x64.tar.gz"), "jdk.tar.gz")
-    add("jdk.tar.gz", "/usr/java")
-    env("JAVA_HOME", "/usr/java/jdk1.8.0_45/bin")
-    env("PATH", "$JAVA_HOME:$PATH")
+    from("java")
 
     add(jarFile, jarTargetPath)
 
     stageFile(file("greet.sh"), "greet.sh")
     add("greet.sh", "/app/greet.sh")
-    runRaw("chmod a+x /app/greet.sh")
+    run("chmod", "a+x", "/app/greet.sh")
 
     workDir(appDirPath)
     entryPoint("/app/greet.sh")

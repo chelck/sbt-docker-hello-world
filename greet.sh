@@ -1,9 +1,11 @@
 #!/bin/sh
 
-echo "Bourne says Hello"
 
 ls -l /app
 
-echo "Calling java"
+which java
+java -version
+
+echo "Bourne says Hello"
 java -jar /app/bodhi*jar
 
