@@ -1,6 +1,6 @@
-name := "bodhi"
+name := "hello"
 
-organization := "sbtdocker"
+organization := "org.bodhi"
 
 version := "0.1.0"
 
@@ -20,7 +20,7 @@ dockerfile in docker := {
 
     add(jarFile, jarTargetPath)
 
-    stageFile(file("greet.sh"), "greet.sh")
+    stageFile(file("src/main/scripts/greet.sh"), "greet.sh")
     add("greet.sh", "/app/greet.sh")
     run("chmod", "a+x", "/app/greet.sh")
 
